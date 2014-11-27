@@ -1,6 +1,7 @@
 package toucan.graphique.vue;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.util.Hashtable;
 import java.util.Observable;
 import java.util.Observer;
@@ -29,6 +30,7 @@ public class VueControll extends JPanel implements Observer  {
 		boutonGoStop = new JButton("Stop");
 		boutonGoStop.setEnabled(false);
 		boutonGoStop.addActionListener(new EcouteurGoStop(model));
+		boutonGoStop.setPreferredSize(new Dimension(120, 25));
 		this.add(boutonGoStop);
 		/* Slider pour la vitesse de l'animation */
 		slider = new JSlider(JSlider.HORIZONTAL, 1, 5, 3);
@@ -46,7 +48,7 @@ public class VueControll extends JPanel implements Observer  {
 	
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		boutonGoStop.setText(model.isRun()?"Stop":"Go");
+		boutonGoStop.setText(model.getRunBoutonText());
 		boutonGoStop.setEnabled(true);
 	}
 }

@@ -77,8 +77,9 @@ public class VueAnimation extends JPanel {
             Logger.getLogger(VueAnimation.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(!model.estFini()){
-        	if(model.isRun())
+        	if(model.isRun()){
         		repaint() ;
+        	}
         }else{
         	model.mettreAJour();
         }

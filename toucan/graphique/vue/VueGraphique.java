@@ -28,15 +28,15 @@ public class VueGraphique extends JPanel implements Observer{
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		
 		Runnable code = new Runnable() {
 			public void run() {
-				vueAnim.setTempo(model.getVitesse());
-				vueAnim.repaint();
+        		vueAnim.setTempo(model.getVitesse());
+        		if(model.isRun())
+        			vueAnim.repaint();
 			}
 		} ;
 		if (SwingUtilities.isEventDispatchThread())
-			code.run() ;
+        	code.run() ;
 		else
 			try {
 				SwingUtilities.invokeAndWait(code) ;

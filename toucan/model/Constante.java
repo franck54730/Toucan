@@ -29,4 +29,9 @@ public class Constante {
 	public static int Y_CASE = 100;
 	public static int Y_LABEL = 350;
 	public static int Y_VARIABLE = 300;
+	
+	public static int ETAT_DEPART = 0;
+	public static int ETAT_RUN = 1;
+	public static int ETAT_PAUSE = 2;
+	
 }

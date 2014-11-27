@@ -19,7 +19,7 @@ public class Toucan extends JFrame {
     public Toucan() {
         super("Projet Toucan - animation des algorithmes de tris");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Modele model = new Modele(8);
+        Modele model = new Modele(50);
         // instanciation de la vue de l'animation
         VueGraphique vueGraphique = new VueGraphique(model) ;
         add(vueGraphique, BorderLayout.CENTER) ;

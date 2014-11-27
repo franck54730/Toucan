@@ -22,11 +22,11 @@ public class Modele extends Observable implements Runnable {
 	protected int position;
 	protected int vitesse;
 	protected int temps;
-	protected boolean run;
+	protected int run;
 	protected String code;
 	
 	public Modele(int n){
-		run = false;
+		run = Constante.ETAT_DEPART;
 		position = 0;
 		temps = 0;
 		vitesse = 2;
@@ -53,11 +53,15 @@ public class Modele extends Observable implements Runnable {
 	 * @return si l'algo est en cours d'éxécution
 	 */
 	public boolean isRun(){
-		return run;
+		return run == Constante.ETAT_RUN;
 	}
 	
 	public void goStop(){
-		run = ! run;
+		if(run == Constante.ETAT_DEPART || run == Constante.ETAT_PAUSE){
+			run = Constante.ETAT_RUN;
+		}else{
+			run = Constante.ETAT_PAUSE;
+		}
 		setChanged();
 		notifyObservers();
 	}
@@ -90,7 +94,7 @@ public class Modele extends Observable implements Runnable {
 	 * methode qui execute l'algorithme de trie à bulle
 	 */
 	public void run(){
-		run = true;
+		run = Constante.ETAT_RUN;
 		AlgoBulle algoB = new AlgoBulle(this);
 		algoB.trier();
 	}
@@ -189,6 +193,18 @@ public class Modele extends Observable implements Runnable {
 	 */
 	public void incTemps() {
 		temps++;
+	}
+	
+	public String getRunBoutonText(){
+		String rep = "";
+		if(run == Constante.ETAT_RUN){
+			rep = "Pause";
+		}else if(run == Constante.ETAT_DEPART){
+			rep = "Commencer";
+		}else{
+			rep = "Continuer";
+		}
+		return rep;
 	}
 }
 
