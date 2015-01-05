@@ -2,12 +2,12 @@ package toucan.model.algo;
 
 import toucan.model.Modele;
 
-public class AlgoBulle extends IAlgo {
+public class AlgoBulle extends AbstractAlgo {
 	
-	public AlgoBulle(Modele m){
+	public AlgoBulle(Modele m) {
 		super(m);
 	}
-	
+
 	@Override
 	public void trier() {
 		int indiceEncore = 0;

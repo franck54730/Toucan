@@ -7,8 +7,7 @@ import java.util.Random;
 import toucan.model.algo.AlgoBulle;
 import toucan.model.algo.AlgoFacade;
 import toucan.model.algo.AlgoInsertion;
-import toucan.model.algo.AlgoTest;
-import toucan.model.algo.IAlgo;
+import toucan.model.algo.AbstractAlgo;
 import toucan.model.animation.AffectationCaseCase;
 import toucan.model.animation.AffectationCaseVariable;
 import toucan.model.animation.AffectationVariableCase;
@@ -26,10 +25,10 @@ public class Modele extends Observable implements Runnable {
 	protected int temps;
 	protected int run;
 	protected String code;
-	protected IAlgo algo;
+	protected AbstractAlgo algo;
 	
 	public void setAlgo(int i){
-		run = Constante.ETAT_DEPART;
+		//run = Constante.ETAT_DEPART;
 		switch(i){
 			case Constante.ID_ALGO_BULLE : 
 				algo = new AlgoBulle(this);
@@ -140,6 +139,10 @@ public class Modele extends Observable implements Runnable {
 	 */
 	public boolean estFini(){
 		return cases.estFini(temps);
+	}
+	
+	public int getNbCases(){
+		return cases.nbCase();
 	}
 	
 	/**
