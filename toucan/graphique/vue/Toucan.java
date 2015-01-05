@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 import toucan.model.Modele;
 
@@ -21,8 +22,11 @@ public class Toucan extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Modele model = new Modele(50);
         // instanciation de la vue de l'animation
+        VueText vueText = new VueText(model);
+        add(vueText, BorderLayout.SOUTH);
         VueGraphique vueGraphique = new VueGraphique(model) ;
-        add(vueGraphique, BorderLayout.CENTER) ;
+        JScrollPane vueScrollGraphique = new JScrollPane(vueGraphique);
+        add(vueScrollGraphique, BorderLayout.CENTER) ;
         VueControll vueControll = new VueControll(model);
         add(vueControll, BorderLayout.NORTH);
         VueMenuBar menu = new VueMenuBar(model);

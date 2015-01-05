@@ -15,23 +15,29 @@ public class Constante {
 		return rep;
 	}
 	
-	public static Color COULEUR_BASE = Color.blue;
-	public static Color COULEUR_MVT = Color.red;
-	public static Color COULEUR_COMP = Color.yellow;
-	public static Color COULEUR_COMP_MOINS = Color.green;
-	public static Color COULEUR_COMP_PLUS = Color.magenta;
-	public static Color COULEUR_VAR = Color.cyan;
+	public static final Color COULEUR_BASE = Color.blue;
+	public static final Color COULEUR_MVT = Color.red;
+	public static final Color COULEUR_COMP = Color.yellow;
+	public static final Color COULEUR_COMP_MOINS = Color.green;
+	public static final Color COULEUR_COMP_PLUS = Color.magenta;
+	public static final Color COULEUR_VAR = Color.cyan;
 	
-	public static String TEXT_TIP_MENUFICHIER = "Menu fichier permettant de :";
-	public static String TEXT_TIP_MENUALGO = "Menu algo permettant de choisir l'algorithme � executer";
-	public static String TEXT_TIP_ITEMBULLE = "Choisir algorithme de tri à bulle";
+	public static final String TEXT_TIP_MENUFICHIER = "Menu fichier permettant de :";
+	public static final String TEXT_TIP_MENUALGO = "Menu algo permettant de choisir l'algorithme � executer";
+	public static final String TEXT_TIP_ITEMBULLE = "Choisir algorithme de tri à bulle";
+	public static final String TEXT_TIP_ITEMPERSO = "Choisir algorithme de tri personnaliser";
+	public static final String TEXT_TIP_ITEMDEMARRER = "Demarrer l'algorithme de tri";
 	
-	public static int Y_CASE = 100;
-	public static int Y_LABEL = 350;
-	public static int Y_VARIABLE = 300;
+	public static final int ID_ALGO_BULLE = 1;
+	public static final int ID_ALGO_INSERTION = 2;
+	public static final int ID_ALGO_PERSO = 3;
 	
-	public static int ETAT_DEPART = 0;
-	public static int ETAT_RUN = 1;
-	public static int ETAT_PAUSE = 2;
+	public static final int Y_CASE = 100;
+	public static final int Y_LABEL = 350;
+	public static final int Y_VARIABLE = 300;
+	
+	public static final int ETAT_DEPART = 0;
+	public static final int ETAT_RUN = 1;
+	public static final int ETAT_PAUSE = 2;
 	
 }

@@ -1,11 +1,6 @@
 package toucan.model.algo;
 
 import toucan.model.Modele;
-import toucan.model.animation.AffectationCaseCase;
-import toucan.model.animation.AffectationCaseVariable;
-import toucan.model.animation.AffectationVariableCase;
-import toucan.model.animation.ComparaisonCaseCase;
-import toucan.model.animation.ComparaisonVariableCase;
 
 public class AlgoBulle extends IAlgo {
 	
