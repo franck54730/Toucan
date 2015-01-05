@@ -1,0 +1,84 @@
+10
+
+dir
+0
+http://toucan-s5.googlecode.com/svn/trunk/src/toucan/model
+http://toucan-s5.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+051e70c2-e7ad-6d0f-666f-8777fc8ccd16
+
+Constante.java
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+Modele.java
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+algo
+dir
+
+
+
+add
+
+animation
+dir
+
+
+
+add
+
+cases
+dir
+
+
+
+add
+
+mouvements
+dir
+
+
+
+add
+
