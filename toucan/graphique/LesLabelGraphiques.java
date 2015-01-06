@@ -24,7 +24,6 @@ public class LesLabelGraphiques implements Iterable<LabelGraphic>{
 	/**
 	 * retourne un iterator sur la liste des cases graphiques
 	 */
-	@Override
 	public Iterator<LabelGraphic> iterator() {
 		return casesGraphiques.iterator();
 	}

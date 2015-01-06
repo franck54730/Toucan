@@ -16,7 +16,6 @@ public class EcouteurAlgo implements ActionListener {
 		algo = a;
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		model.setAlgo(algo);
 	}

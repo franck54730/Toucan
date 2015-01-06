@@ -36,7 +36,6 @@ public class VueText extends JPanel implements Observer  {
 		this.add(scrollPane);
 	}
 	
-	@Override
 	public void update(Observable arg0, Object arg1) {
 	}
 }

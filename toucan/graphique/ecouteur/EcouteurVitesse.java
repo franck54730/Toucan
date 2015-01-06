@@ -17,7 +17,6 @@ public class EcouteurVitesse implements ChangeListener {
 		model = m;
 	}
 
-	@Override
 	public void stateChanged(ChangeEvent arg0) {
 		JSlider source = (JSlider)arg0.getSource();
 		if (!source.getValueIsAdjusting()) {

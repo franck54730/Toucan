@@ -13,7 +13,6 @@ public class EcouteurDemarrer implements ActionListener {
 		model = m;
 	}
 	
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		Thread t = new Thread((Runnable) model, "Toucan");
 		t.start();

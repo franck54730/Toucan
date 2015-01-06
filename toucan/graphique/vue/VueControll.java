@@ -46,7 +46,6 @@ public class VueControll extends JPanel implements Observer  {
 		slider.addChangeListener(new EcouteurVitesse(model));
 	}
 	
-	@Override
 	public void update(Observable arg0, Object arg1) {
 		boutonGoStop.setText(model.getRunBoutonText());
 		boutonGoStop.setEnabled(true);

@@ -10,7 +10,6 @@ public class LesCases implements Iterable<ICase>{
 		cases = new ArrayList<ICase>();
 	}
 
-	@Override
 	public Iterator<ICase> iterator() {
 		return cases.iterator();
 	}

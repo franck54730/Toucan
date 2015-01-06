@@ -7,7 +7,7 @@ public class BlocDInstruction extends ArbreAbstrait {
 	protected ArrayList<ArbreAbstrait> alArbre;
 	
 	public BlocDInstruction(){
-		alArbre = new ArrayList<>();
+		alArbre = new ArrayList<ArbreAbstrait>();
 	}
 	
 	@Override

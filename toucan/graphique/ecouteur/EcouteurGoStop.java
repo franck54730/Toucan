@@ -13,7 +13,6 @@ public class EcouteurGoStop implements ActionListener {
 		model = m;
 	}
 	
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		model.goStop();
 	}

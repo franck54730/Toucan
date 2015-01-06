@@ -26,7 +26,6 @@ public class VueGraphique extends JPanel implements Observer{
 		add(vueAnim);
 	}
 	
-	@Override
 	public void update(Observable o, Object arg) {
 		Runnable code = new Runnable() {
 			public void run() {

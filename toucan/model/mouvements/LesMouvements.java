@@ -14,7 +14,6 @@ public class LesMouvements implements Iterable<Mouvement>{
 		mouvements = new ArrayList<Mouvement>();
 	}
 
-	@Override
 	public Iterator<Mouvement> iterator() {
 		return mouvements.iterator();
 	}

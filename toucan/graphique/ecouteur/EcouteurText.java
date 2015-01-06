@@ -19,17 +19,14 @@ public class EcouteurText implements KeyListener {
 		editor = e;
 	}
 
-	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Stub de la méthode généré automatiquement
 	}
 
-	@Override
 	public void keyReleased(KeyEvent arg0) {
 		model.setCode(editor.getText());
 	}
 
-	@Override
 	public void keyTyped(KeyEvent arg0) {
 		model.setCode(editor.getText());
 	}

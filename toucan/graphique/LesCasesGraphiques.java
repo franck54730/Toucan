@@ -24,7 +24,6 @@ public class LesCasesGraphiques implements Iterable<CaseGraphique>{
 	/**
 	 * retourne un iterator sur la liste des cases graphiques
 	 */
-	@Override
 	public Iterator<CaseGraphique> iterator() {
 		return casesGraphiques.iterator();
 	}

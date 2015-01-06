@@ -44,7 +44,6 @@ public class VueMenuBar extends JMenuBar implements Observer{
 		this.add(menuAlgo);
 	}
 
-	@Override
 	public void update(Observable arg0, Object arg1) {
 		itemBulle.setEnabled(model.estFini());
 	}
