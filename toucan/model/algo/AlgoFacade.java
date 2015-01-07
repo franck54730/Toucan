@@ -1,5 +1,9 @@
 package toucan.model.algo;
 
+import java.io.ByteArrayInputStream;
+
+import toucan.analyse.AnalyseurLexical;
+import toucan.analyse.AnalyseurSyntaxique;
 import toucan.model.Modele;
 import toucan.model.animation.AffectationBoolean;
 import toucan.model.animation.AffectationCase;
@@ -26,12 +30,6 @@ public class AlgoFacade extends AbstractAlgo {
 	
 	public AlgoFacade(Modele m) {
 		super(m);
-		arbre = new BlocDInstruction();
-		arbre.ajouter(new AutreInstruction("int toto;\n"));
-		arbre.ajouter(new InstructionAffectationCaseVariable(1, "toto"));
-		arbre.ajouter(new InstructionAffectationCaseCase(1, 2));
-		arbre.ajouter(new InstructionAffectationVariableCase(2, "toto"));
-		System.out.println(arbre.getCodeDecorer());
 	}
 	
 	/*
@@ -53,6 +51,17 @@ public class AlgoFacade extends AbstractAlgo {
 	@Override
 	public void trier() {
 		// TODO Stub de la méthode généré automatiquement
+		String code = model.getCode();
+		AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(
+				new AnalyseurLexical(
+				new ByteArrayInputStream(code.getBytes()))) ;
+		ArbreAbstrait arbre = null;
+		try{
+			arbre = (ArbreAbstrait) analyseur.parse().value;
+		}catch(Exception e){
+			
+		}
+
 		KitJava k = new KitJava(arbre.getCodeDecorer(), model);
 		k.compiler();
 		k.executer();

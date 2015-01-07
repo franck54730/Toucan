@@ -9,7 +9,6 @@ public class AutreInstruction extends ArbreAbstrait {
 
 	@Override
 	public String getCodeDecorer() {
-		// TODO Stub de la méthode généré automatiquement
 		return code;
 	}
 
