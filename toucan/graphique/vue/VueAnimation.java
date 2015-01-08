@@ -63,12 +63,16 @@ public class VueAnimation extends JPanel {
         GradientPaint gp = new GradientPaint(-w, -h, Color.LIGHT_GRAY, w, h, Color.WHITE);
         g2.setPaint(gp);
         g2.fillRect(0, 0, w, h);
-        for(CaseGraphique uneCase : casesGraphiques){
-        	uneCase.dessiner(g2,model.getTemps());
-        }
-        for(LabelGraphic label : labelsGraphiques){
-        	label.dessiner(g2);
-        }
+    	try{
+	        for(CaseGraphique uneCase : casesGraphiques){
+        		uneCase.dessiner(g2,model.getTemps());
+	        }
+	        for(LabelGraphic label : labelsGraphiques){
+	        	label.dessiner(g2);
+	        }
+    	}catch(Exception e){
+    		
+    	}
         
         model.incTemps();
         try {

@@ -47,6 +47,7 @@ public class KitJava {
 				  +"\n\n"
 				  +"public class AlgoPerso extends AbstractAlgo {\n"
 				  +"	public void trier() {\n"
+				  +"		model.viderVariable();\n"
 				  +"		int[] tab = model.getTab();\n"
 				  +"		int nbCases = model.getNbCases();\n");
 		

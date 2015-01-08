@@ -27,11 +27,11 @@ public class VueGraphique extends JPanel implements Observer{
 	}
 	
 	public void update(Observable o, Object arg) {
+		vueAnim.reconstruireCasesGraphiquesEtLabel();
 		Runnable code = new Runnable() {
 			public void run() {
         		vueAnim.setTempo(model.getVitesse());
-        		if(model.isRun())
-        			vueAnim.repaint();
+        		vueAnim.repaint();
 			}
 		} ;
 		if (SwingUtilities.isEventDispatchThread())

@@ -14,7 +14,11 @@ public class EcouteurDemarrer implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
-		Thread t = new Thread((Runnable) model, "Toucan");
-		t.start();
+		if(model.isDepart()){
+			Thread t = new Thread((Runnable) model, "Toucan");
+			t.start();
+		}else{
+			model.arret();
+		}
 	}
 }

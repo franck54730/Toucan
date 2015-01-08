@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 
 import toucan.graphique.ecouteur.EcouteurAlgo;
 import toucan.graphique.ecouteur.EcouteurDemarrer;
+import toucan.graphique.ecouteur.EcouteurReinit;
 import toucan.model.Constante;
 import toucan.model.Modele;
 
@@ -20,12 +21,17 @@ public class VueMenuBar extends JMenuBar implements Observer{
 	protected JMenuItem itemBulle;
 	protected JMenuItem itemPerso;
 	protected JMenuItem itemDemarrer;
+	protected JMenuItem itemReinitialiser;
 	
 	public VueMenuBar(Modele m){
 		model = m;
 		model.addObserver(this);
 		menuFichier = new JMenu("Fichier");
 		menuFichier.setToolTipText(Constante.TEXT_TIP_MENUFICHIER);
+		itemReinitialiser = new JMenuItem("Reinitialiser");
+		itemReinitialiser.setToolTipText(Constante.TEXT_TIP_ITEMREINIT);
+		itemReinitialiser.addActionListener(new EcouteurReinit(model));
+		menuFichier.add(itemReinitialiser);
 		this.add(menuFichier);
 		menuAlgo = new JMenu("Algo");
 		menuAlgo.setToolTipText(Constante.TEXT_TIP_MENUALGO);
@@ -45,6 +51,8 @@ public class VueMenuBar extends JMenuBar implements Observer{
 	}
 
 	public void update(Observable arg0, Object arg1) {
-		itemBulle.setEnabled(model.estFini());
+		itemBulle.setEnabled(model.isDepart());
+		itemPerso.setEnabled(model.isDepart());
+		itemDemarrer.setText(model.isDepart()?"Démarrer":"Arrêter");
 	}
 }

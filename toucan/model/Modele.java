@@ -1,6 +1,7 @@
 package toucan.model;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Random;
 
@@ -20,7 +21,7 @@ import toucan.model.cases.Variable;
 
 public class Modele extends Observable implements Runnable {
 	protected LesCases cases;
-	protected int position;
+	protected ArrayList<Integer> saveTab;
 	protected int vitesse;
 	protected int temps;
 	protected int run;
@@ -45,18 +46,13 @@ public class Modele extends Observable implements Runnable {
 	public Modele(int n){
 		algo = new AlgoBulle(this);
 		run = Constante.ETAT_DEPART;
-		position = 0;
 		temps = 0;
 		vitesse = 2;
 		code = "";
 		cases = new LesCases();
+		saveTab = new ArrayList<Integer>();
 		genererTableau(n);
-		initialiserTableau();
-		creeVariable("", "trier");
-		creeVariable("", "n");
-		creeVariable("", "n-1");
-		creeVariable("", "i");
-		creeVariable("", "tmp");	
+		initialiserTableau();	
 	}
 	
 	public void setCode(String s){
@@ -75,8 +71,20 @@ public class Modele extends Observable implements Runnable {
 		return run == Constante.ETAT_RUN;
 	}
 	
+	/**
+	 * 
+	 * @return si l'algo est en cours d'éxécution
+	 */
+	public boolean isDepart(){
+		return run == Constante.ETAT_DEPART;
+	}
+	
+	
 	public void goStop(){
-		if(run == Constante.ETAT_DEPART || run == Constante.ETAT_PAUSE){
+		if(run == Constante.ETAT_DEPART){
+			Thread t = new Thread((Runnable) this, "Toucan");
+			t.start();
+		}else if(run == Constante.ETAT_PAUSE){
 			run = Constante.ETAT_RUN;
 		}else{
 			run = Constante.ETAT_PAUSE;
@@ -86,10 +94,12 @@ public class Modele extends Observable implements Runnable {
 	}
 	
 	/**
-	 * methode qui genere un tableau de n case, n'efface pas un ancien tableau eventuelle
+	 * methode qui genere un tableau de n case, efface un ancien tableau eventuelle
 	 * @param n nombre de case du tableau
 	 */
 	public void genererTableau(int n){
+		cases.vider();
+		saveTab.clear();
 		for(int i = 0; i < n; i++){
 			Case c = new Case("", 50*(i+1), 100, Constante.COULEUR_BASE);
 			cases.addCase(c);
@@ -102,8 +112,11 @@ public class Modele extends Observable implements Runnable {
 	public void initialiserTableau(){
 		Random r = new Random();
 		for(ICase c : cases){
-			if(!c.isVariable())
-				c.setValeur(r.nextInt(101)+"");
+			if(!c.isVariable()){
+				int val = r.nextInt(101);
+				c.setValeur(val+"");
+				saveTab.add(val);
+			}
 		}
 		setChanged();
 		notifyObservers();
@@ -163,6 +176,24 @@ public class Modele extends Observable implements Runnable {
 	public Variable getVariable(int num){
 		return (Variable) cases.getVariable(num);
 	}
+	
+	/**
+	 * fonction qui renvoie la nieme variable
+	 * @param num
+	 * @return la nieme variable
+	 */
+	public Variable getVariable(String name){
+		return (Variable) cases.getVariable(name);
+	}
+	
+	/**
+	 * fonction qui renvoie l'indice d'une variable variable
+	 * @param name 
+	 * @return la nieme variable
+	 */
+	public int getVariableIndice(String name){
+		return cases.getVariableIndice(name);
+	}
 
 	/**
 	 * accesseur en lecture sur la vitesse
@@ -186,8 +217,18 @@ public class Modele extends Observable implements Runnable {
 	 * @param val
 	 */
 	public void creeVariable(String val, String label){
-		Variable c = new Variable(val, 50*cases.nbVariable(), Constante.Y_VARIABLE, Constante.COULEUR_VAR, label);
-		cases.addCase(c);
+		boolean trouv = false;
+		int nb = cases.nbVariable();
+		for(int i = 0; i < nb;i++){
+			if(((Variable)cases.getVariable(i)).getLabel().equals(label))
+				trouv = true;
+			else
+				i++;
+		}
+		if(!trouv){
+			Variable c = new Variable(val, 50*cases.nbVariable(), Constante.Y_VARIABLE, Constante.COULEUR_VAR, label);
+			cases.addCase(c);
+		}
 	}
 	
 	/**
@@ -227,6 +268,29 @@ public class Modele extends Observable implements Runnable {
 			rep = "Continuer";
 		}
 		return rep;
+	}
+	
+	public void reinit(){
+		algo = new AlgoBulle(this);
+		run = Constante.ETAT_DEPART;
+		temps = 0;
+		code = "";
+		genererTableau(Constante.NB_CASES);
+		initialiserTableau();
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void viderVariable(){
+		cases.viderVariable();
+	}
+	
+	public void arret(){
+		LesCases nLC = new LesCases(cases, saveTab);
+		cases = nLC;
+		run = Constante.ETAT_DEPART;
+		setChanged();
+		notifyObservers();
 	}
 }
 

@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
+import toucan.model.Constante;
 import toucan.model.Modele;
 
 /**
@@ -20,7 +21,7 @@ public class Toucan extends JFrame {
     public Toucan() {
         super("Projet Toucan - animation des algorithmes de tris");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Modele model = new Modele(4);
+        Modele model = new Modele(Constante.NB_CASES);
         // instanciation de la vue de l'animation
         VueText vueText = new VueText(model);
         add(vueText, BorderLayout.SOUTH);

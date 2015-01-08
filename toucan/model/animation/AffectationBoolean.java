@@ -39,4 +39,10 @@ public class AffectationBoolean extends IAnimation {
 		reinit();
 	}
 
+	@Override
+	public void executer(String var, String val) {
+		// TODO Stub de la méthode généré automatiquement
+		
+	}
+
 }

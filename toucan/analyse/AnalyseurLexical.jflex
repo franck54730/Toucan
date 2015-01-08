@@ -37,7 +37,7 @@ cste = {chiffre}+
 
 idf = [a-z][a-zA-Z0-9]*
 
-typePrimitif = "byte"|"short"|"long"|"float"|"int"|"double"|"boolean"|"char"
+typePrimitif = "byte"|"short"|"long"|"float"|"int"|"double"|"boolean"|"char"|"for"|"test"
 op = "+"|"-"|"/"|"*"
 
 %%
@@ -53,6 +53,10 @@ op = "+"|"-"|"/"|"*"
 <YYINITIAL>"["                		{ return symbol(CodesLexicaux.CROOUV); }
 
 <YYINITIAL>"]"                		{ return symbol(CodesLexicaux.CROFER); }
+
+<YYINITIAL>"{"                		{ return symbol(CodesLexicaux.ACCOUV); }
+
+<YYINITIAL>"}"                		{ return symbol(CodesLexicaux.ACCFER); }
 
 <YYINITIAL>"tab"                	{ return symbol(CodesLexicaux.TAB); }
 

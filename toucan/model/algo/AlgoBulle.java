@@ -10,42 +10,40 @@ public class AlgoBulle extends AbstractAlgo {
 
 	@Override
 	public void trier() {
-		int indiceEncore = 0;
-		int indiceN = 1;
-		int indiceN_1 = 2;
-		int indiceJ = 3;
-		int indiceTmp = 4;
+		model.viderVariable();
+		model.creeVariable("", "encore");
+		model.creeVariable("", "n");
+		model.creeVariable("", "i");
+		model.creeVariable("", "tmp");
 		boolean encore = true ;
-		affB.executer(indiceEncore, encore ? 1:0);
+		affB.executer(model.getVariableIndice("encore"), encore ? 1:0);
 		int n = model.getLesCases().nbCase() ;
-		affV.executer(indiceN, n);
-		affV.executer(indiceN_1, n-1);
+		affV.executer(model.getVariableIndice("n"), n);
 		int[] tab = model.getTab();
 		model.mettreAJour();
 		while (encore) {
 			encore = false ;
-			affB.executer(indiceEncore, encore? 1:0);
-			affV.executer(indiceJ,0);
-			compVV.executer(indiceJ, indiceN_1);
+			affB.executer(model.getVariableIndice("encore"), encore? 1:0);
+			affV.executer(model.getVariableIndice("i"),0);
+			compVV.executer(model.getVariableIndice("i"), model.getVariableIndice("n"));
 			for (int j = 0 ; j < n - 1; j++) {
 				compCC.executer(j, j+1);
 				if (tab[j] > tab[j+1]) {
-					affCV.executer(j, indiceTmp);
+					affCV.executer(j, model.getVariableIndice("tmp"));
 					int var = tab[j] ;
 					affCC.executer(j+1, j);
 					tab[j] = tab[j+1] ;
-					affVC.executer(j+1, indiceTmp);
+					affVC.executer(j+1, model.getVariableIndice("tmp"));
 					tab[j+1] = var ;
 					encore = true ;
-					affB.executer(indiceEncore, encore? 1:0);
+					affB.executer(model.getVariableIndice("encore"), encore? 1:0);
 				}
-				inc.executer(indiceJ);
-				compVV.executer(indiceJ, indiceN_1);
+				inc.executer(model.getVariableIndice("i"));
+				compVV.executer(model.getVariableIndice("i"), model.getVariableIndice("n"));
 				model.mettreAJour();
 			}
 			n = n-1 ;
-			affV.executer(indiceN, n);
-			affV.executer(indiceN_1, n-1);
+			affV.executer(model.getVariableIndice("n"), n);
 		}
 	}
 

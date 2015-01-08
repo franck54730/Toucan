@@ -18,6 +18,13 @@ public abstract class IAnimation {
 	 * @param num2
 	 */
 	public abstract void executer(int num1, int num2);
+
+	/**
+	 * fonction qui execute une annimation entre deux cases
+	 * @param num1
+	 * @param num2
+	 */
+	public abstract void executer(String var, String val);
 	
 	/**
 	 * fonction qui execute une annimation sur une case

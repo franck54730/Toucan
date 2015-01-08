@@ -48,7 +48,7 @@ parser code {:
        for the fatal error which is passed into the method in the object 'message' and then exit.*/
     public void report_fatal_error(String message, Object info) {
         report_error(message, info);
-        System.exit(1);
+        //System.exit(1);
     }
 :};
 /* ------------Declaration of Terminals and Non Terminals Section----------- */
@@ -56,7 +56,7 @@ parser code {:
    Terminals that have no value are listed first and then terminals that do have a value, in this 
    case a String value, are listed on the next line down. */
 
-terminal Symbol    POINTVIRGULE, TAB, CROOUV, CROFER, EGAL, PAROUV, PARFER ;
+terminal Symbol    POINTVIRGULE, TAB, CROOUV, CROFER, EGAL, PAROUV, PARFER, ACCOUV, ACCFER ;
 terminal String    TYPEPRIMITIF, CSTE, IDF , OP ;
    
 /* Non terminals used in the grammar section.  
@@ -94,7 +94,7 @@ INST    ::=     DECL:d POINTVIRGULE
 		;
 
 DECL    ::=     TYPEPRIMITIF:t IDF:i
-		{: RESULT = new AutreInstruction(t + " " + i); :}
+		{: RESULT = new Declaration(t, i); :}
 	|	TYPEPRIMITIF:t IDF:i EGAL EXP:e
 		{: RESULT = new AutreInstruction(t + " " + i + " = " + e.getCodeDecorer()); :}
 		
@@ -113,7 +113,7 @@ AFF     ::=     TAB CROOUV INDICE:a CROFER EGAL TAB CROOUV INDICE:b CROFER
 		{: RESULT = new InstructionAffectationCaseVariable(a.getCodeDecorer(),v.getCodeDecorer()) ; :}
 		// affectation du style : var = tab[indice]
 	|	INDICE:v EGAL EXP:e
-		{: RESULT = new AutreInstruction(v.getCodeDecorer() + " = " + e.getCodeDecorer()); :}
+		{: RESULT = new InstructionAffectationVariable(e.getCodeDecorer(), v.getCodeDecorer()); :}
 		// affectation du style : var = expression
 		;
 

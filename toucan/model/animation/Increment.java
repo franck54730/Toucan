@@ -42,4 +42,10 @@ public class Increment extends IAnimation {
 	public void executer(int num1, int num2) {
 	}
 
+	@Override
+	public void executer(String var, String val) {
+		// TODO Stub de la méthode généré automatiquement
+		
+	}
+
 }

@@ -40,4 +40,10 @@ public class AffectationCase extends IAnimation {
 		
 	}
 
+	@Override
+	public void executer(String var, String val) {
+		// TODO Stub de la méthode généré automatiquement
+		
+	}
+
 }
