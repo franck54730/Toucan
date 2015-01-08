@@ -13,7 +13,6 @@ public class AffectationCaseCase extends IAnimation {
 		super(m);
 	}
 	
-	@Override
 	public void executer(int num1, int num2) {
 		int decalage = 60;
 		int deplacement;
@@ -55,17 +54,4 @@ public class AffectationCaseCase extends IAnimation {
 		}
 		reinit();
 	}
-
-	@Override
-	public void executer(int num1) {
-		// TODO Stub de la mï¿½thode gï¿½nï¿½rï¿½ automatiquement
-		
-	}
-
-	@Override
-	public void executer(String var, String val) {
-		// TODO Stub de la méthode généré automatiquement
-		
-	}
-
 }

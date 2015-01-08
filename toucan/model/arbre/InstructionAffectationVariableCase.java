@@ -12,7 +12,7 @@ public class InstructionAffectationVariableCase extends InstructionAffectation {
 	
 	@Override
 	public String getCodeDecorer() {
-		return "affVC.executer("+num1+", 4);\n"
+		return "affVC.executer("+num1+", \""+var+"\");\n"
 			  +"tab["+num1+"] = "+var+"\n";
 	}
 }

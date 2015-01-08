@@ -13,14 +13,8 @@ public class DeclarationAffectationVariable extends ArbreAbstrait {
 
 	@Override
 	public String getCodeDecorer() {
-		System.out.println();
-		System.out.println();
-		System.out.println("model.creeVariable(\"\", \""+idf+"\");"
-			+   type+" "+idf + ";"
-			+   idf+" = "+valeur+"\n");
-		System.out.println();
-		System.out.println();
 		return "model.creeVariable(\"\", \""+idf+"\");"
+			+	"model.mettreAJour();"
 			+   type+" "+idf + ";"
 			+	"affV.executer(\""+idf+"\", \""+valeur+"\");\n"
 			+   idf+" = "+valeur+"\n";

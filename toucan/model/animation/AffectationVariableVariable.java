@@ -13,7 +13,6 @@ public class AffectationVariableVariable extends IAnimation {
 		super(m);
 	}
 	
-	@Override
 	public void executer(int num1, int num2) {
 		int decalage = 100;
 		ICase var1 = model.getVariable(num1);
@@ -58,17 +57,4 @@ public class AffectationVariableVariable extends IAnimation {
 		}
 		reinit();
 	}
-
-	@Override
-	public void executer(int num1) {
-		// TODO Stub de la mï¿½thode gï¿½nï¿½rï¿½ automatiquement
-		
-	}
-
-	@Override
-	public void executer(String var, String val) {
-		// TODO Stub de la méthode généré automatiquement
-		
-	}
-
 }

@@ -227,8 +227,20 @@ public class Modele extends Observable implements Runnable {
 		}
 		if(!trouv){
 			Variable c = new Variable(val, 50*cases.nbVariable(), Constante.Y_VARIABLE, Constante.COULEUR_VAR, label);
+			c.rester(tempsMax(), Constante.COULEUR_VAR);
 			cases.addCase(c);
 		}
+	}
+	
+	public int tempsMax(){
+		int rep = 0;
+		for(ICase c : cases){
+			int t = c.getTempsMax();
+			if(rep<t){
+				rep = t;
+			}
+		}
+		return rep;
 	}
 	
 	/**
@@ -289,6 +301,7 @@ public class Modele extends Observable implements Runnable {
 		LesCases nLC = new LesCases(cases, saveTab);
 		cases = nLC;
 		run = Constante.ETAT_DEPART;
+		temps = 0;
 		setChanged();
 		notifyObservers();
 	}

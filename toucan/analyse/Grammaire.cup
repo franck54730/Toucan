@@ -99,7 +99,7 @@ DECL    ::=     TYPEPRIMITIF:t IDF:i
 		{: RESULT = new DeclarationAffectationVariable(t, i, e.getCodeDecorer()); :}
 		
 	|	TYPEPRIMITIF:t IDF:i EGAL TAB CROOUV INDICE:n CROFER
-		{: RESULT = new AutreInstruction(t + " " + i + " = tab["+ n.getCodeDecorer() +"]" ); :}
+		{: RESULT = new DeclarationAffectationCaseVariable(t, i, n.getCodeDecorer()); :}
 		
 		;
 

@@ -32,9 +32,7 @@ public class LesCases implements Iterable<ICase>{
 		int nbVar = 0;
 		int nbCase = 0;
 		for(int i = 0; i < tab.size();i++){
-			int val = tab.get(i);
-			Case oldC = lc.getCaseForValeur(val+"");
-			Case newC = new Case(oldC.getValeur(), 50*(nbCase+1), 100, Constante.COULEUR_BASE);
+			Case newC = new Case(tab.get(i)+"", 50*(nbCase+1), 100, Constante.COULEUR_BASE);
 			this.addCase(newC);
 			nbCase++;
 		}

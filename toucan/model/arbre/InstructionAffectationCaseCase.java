@@ -13,6 +13,6 @@ public class InstructionAffectationCaseCase extends InstructionAffectation {
 	@Override
 	public String getCodeDecorer() {
 		return "affCC.executer("+num2+", "+num1+");\n"
-			  +"tab["+num1+"] = tab["+num2+"]\n";
+			  +"tab["+num1+"] = tab["+num2+"]";
 	}
 }

@@ -28,6 +28,7 @@ public class Constante {
 	public static final String TEXT_TIP_ITEMPERSO = "Choisir algorithme de tri personnaliser";
 	public static final String TEXT_TIP_ITEMDEMARRER = "Demarrer l'algorithme de tri";
 	public static final String TEXT_TIP_ITEMREINIT = "Générer un nouveau tableau";
+	public static final String TEXT_TIP_ITEMINSERTION = "Choisir algorithme de tri par insertion";
 	
 	
 	public static final int ID_ALGO_BULLE = 1;

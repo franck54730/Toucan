@@ -13,7 +13,6 @@ public class AffectationCase extends IAnimation {
 		super(m);
 	}
 	
-	@Override
 	public void executer(int num1, int val) {
 		int temps = 15;
 		ICase case1 = model.getCase(num1);
@@ -33,17 +32,4 @@ public class AffectationCase extends IAnimation {
 		}
 		reinit();
 	}
-
-	@Override
-	public void executer(int num1) {
-		// TODO Stub de la mï¿½thode gï¿½nï¿½rï¿½ automatiquement
-		
-	}
-
-	@Override
-	public void executer(String var, String val) {
-		// TODO Stub de la méthode généré automatiquement
-		
-	}
-
 }

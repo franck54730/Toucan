@@ -13,7 +13,6 @@ public class AffectationVariable extends IAnimation {
 		super(m);
 	}
 	
-	@Override
 	public void executer(String name, String val) {
 		int temps = 15;
 		ICase var= model.getVariable(name);
@@ -33,12 +32,6 @@ public class AffectationVariable extends IAnimation {
 			}
 		}
 		reinit();
-	}
-
-	@Override
-	public void executer(int num1) {
-		// TODO Stub de la m�thode g�n�r� automatiquement
-		
 	}
 
 	public void executer(int num1, String val) {
@@ -61,7 +54,6 @@ public class AffectationVariable extends IAnimation {
 		reinit();
 	}
 
-	@Override
 	public void executer(int num, int val) {
 		int temps = 15;
 		ICase var= model.getVariable(num);

@@ -19,6 +19,7 @@ public class VueMenuBar extends JMenuBar implements Observer{
 	protected JMenu menuFichier;
 	protected JMenu menuAlgo;
 	protected JMenuItem itemBulle;
+	protected JMenuItem itemInsertion;
 	protected JMenuItem itemPerso;
 	protected JMenuItem itemDemarrer;
 	protected JMenuItem itemReinitialiser;
@@ -39,6 +40,11 @@ public class VueMenuBar extends JMenuBar implements Observer{
 		itemBulle.setToolTipText(Constante.TEXT_TIP_ITEMBULLE);
 		itemBulle.addActionListener(new EcouteurAlgo(model,Constante.ID_ALGO_BULLE));
 		menuAlgo.add(itemBulle);
+		
+		itemInsertion = new JMenuItem("Trie par insertion");
+		itemInsertion.setToolTipText(Constante.TEXT_TIP_ITEMINSERTION);
+		itemInsertion.addActionListener(new EcouteurAlgo(model,Constante.ID_ALGO_INSERTION));
+		menuAlgo.add(itemInsertion);
 		itemPerso = new JMenuItem("Trie perso");
 		itemPerso.setToolTipText(Constante.TEXT_TIP_ITEMPERSO);
 		itemPerso.addActionListener(new EcouteurAlgo(model,Constante.ID_ALGO_PERSO));

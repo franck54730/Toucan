@@ -38,7 +38,7 @@ public class AlgoInsertion extends AbstractAlgo {
 	}*/
 	
 	@Override
-	public void trier() {
+	public void trier() {/*
 		System.out.println("tri insert : ");
 		int[] tab = model.getTab();
 		int n = model.getLesCases().nbCase() ;
@@ -58,7 +58,23 @@ public class AlgoInsertion extends AbstractAlgo {
 			tab[j] = elem;
 			affVC.executer(j, 0);
 		}
-		System.out.println(Arrays.toString(tab));
+		System.out.println(Arrays.toString(tab));*/
+		
+		model.viderVariable();
+		model.creeVariable("", "encore");
+		model.creeVariable("", "n");
+		model.creeVariable("", "i");
+		model.creeVariable("", "tmp");
+		model.mettreAJour();
+		affCV.executer(0, "i");
+		/*
+		model.viderVariable();
+		int[] tab = model.getTab();
+		int nbCases = model.getNbCases();
+		model.creeVariable("", "i");int i ;affCV.executer(0, "i");
+		i = tab[0]
+		 ;
+		 */
 	}
 
 }

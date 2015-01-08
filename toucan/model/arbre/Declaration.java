@@ -12,6 +12,7 @@ public class Declaration extends ArbreAbstrait {
 	@Override
 	public String getCodeDecorer() {
 		return "model.creeVariable(\"\", \""+idf+"\");"
+			+	"model.mettreAJour();"
 			+   type+" "+idf;
 	}
 

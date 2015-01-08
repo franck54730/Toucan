@@ -65,10 +65,4 @@ public class ComparaisonVariableVariable extends IComparaison {
 		// TODO Stub de la mï¿½thode gï¿½nï¿½rï¿½ automatiquement
 		
 	}
-
-	@Override
-	public void executer(String var, String val) {
-		// TODO Stub de la méthode généré automatiquement
-		
-	}
 }

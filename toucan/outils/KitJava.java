@@ -46,7 +46,8 @@ public class KitJava {
 		StringBuilder str = new StringBuilder("package toucan.model.algo;"
 				  +"\n\n"
 				  +"public class AlgoPerso extends AbstractAlgo {\n"
-				  +"	public void trier() {\n"
+				  +"	public void trier() {\n" 
+				  +"		model.mettreAJour();"
 				  +"		model.viderVariable();\n"
 				  +"		int[] tab = model.getTab();\n"
 				  +"		int nbCases = model.getNbCases();\n");

@@ -13,7 +13,6 @@ public class Increment extends IAnimation {
 		super(m);
 	}
 	
-	@Override
 	public void executer(int num1) {
 		int temps = 10;
 		ICase case1 = model.getVariable(num1);
@@ -36,16 +35,6 @@ public class Increment extends IAnimation {
 			}
 		}
 		reinit();
-	}
-
-	@Override
-	public void executer(int num1, int num2) {
-	}
-
-	@Override
-	public void executer(String var, String val) {
-		// TODO Stub de la méthode généré automatiquement
-		
 	}
 
 }

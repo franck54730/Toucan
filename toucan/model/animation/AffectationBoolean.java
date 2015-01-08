@@ -13,12 +13,6 @@ public class AffectationBoolean extends IAnimation {
 		super(m);
 	}
 	
-	@Override
-	public void executer(int num1) {
-	
-	}
-
-	@Override
 	public void executer(int num1, int val) {
 		int temps = 15;
 		ICase var= model.getVariable(num1);
@@ -38,11 +32,4 @@ public class AffectationBoolean extends IAnimation {
 		}
 		reinit();
 	}
-
-	@Override
-	public void executer(String var, String val) {
-		// TODO Stub de la méthode généré automatiquement
-		
-	}
-
 }

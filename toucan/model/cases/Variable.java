@@ -17,6 +17,7 @@ public class Variable extends ICase {
     public Variable(String v, int x, int y, Color coul, String l) {
 		super(v, x, y, coul);
 		label = l;
+		
 	}
 
 	/**
