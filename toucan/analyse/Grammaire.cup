@@ -96,7 +96,7 @@ INST    ::=     DECL:d POINTVIRGULE
 DECL    ::=     TYPEPRIMITIF:t IDF:i
 		{: RESULT = new Declaration(t, i); :}
 	|	TYPEPRIMITIF:t IDF:i EGAL EXP:e
-		{: RESULT = new AutreInstruction(t + " " + i + " = " + e.getCodeDecorer()); :}
+		{: RESULT = new DeclarationAffectationVariable(t, i, e.getCodeDecorer()); :}
 		
 	|	TYPEPRIMITIF:t IDF:i EGAL TAB CROOUV INDICE:n CROFER
 		{: RESULT = new AutreInstruction(t + " " + i + " = tab["+ n.getCodeDecorer() +"]" ); :}

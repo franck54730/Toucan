@@ -5,8 +5,8 @@ public class InstructionAffectationVariable extends InstructionAffectation {
 	protected String val;
 	protected String var;
 	
-	public InstructionAffectationVariable(String v,String varName){
-		val = v;
+	public InstructionAffectationVariable(String valeur,String varName){
+		val = valeur;
 		var = varName;
 	}
 	
