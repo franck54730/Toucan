@@ -10,6 +10,9 @@ import javax.tools.JavaCompiler;
 import javax.tools.JavaFileObject;
 import javax.tools.ToolProvider;
 
+import toucan.exception.CompilationException;
+import toucan.exception.ExecutionException;
+import toucan.exception.ParsingException;
 import toucan.model.Modele;
 import toucan.model.algo.AbstractAlgo;
 import toucan.model.algo.IAlgo;
@@ -57,26 +60,11 @@ public class KitJava {
 			str.append("		"+s+"\n");
 		}
 		str.append("	}\n");
-		/*
-		str.append("	public void setModel(Modele m){");
-		str.append("		model = m;");
-		str.append("		affCC = new AffectationCaseCase(model);");
-		str.append("		affCV = new AffectationCaseVariable(model);");
-		str.append("		affVC = new AffectationVariableCase(model);");
-		str.append("		compCC = new ComparaisonCaseCase(model);");
-		str.append("		compVC = new ComparaisonVariableCase(model);");
-		str.append("		affVV = new AffectationVariableVariable(model);");
-		str.append("		compVV = new ComparaisonVariableVariable(model);");
-		str.append("		affC = new AffectationCase(model);");
-		str.append("		affV = new AffectationVariable(model);");
-		str.append("		inc = new Increment(model);");
-		str.append("		affB = new AffectationBoolean(model);");
-		str.append("	}");*/
 		str.append("}");
 		laClasse = str.toString();
 	}
 	
-    public void compiler() {
+    public void compiler() throws CompilationException {
         // writer pour écrire les erreurs de compilation
         StringWriter sortieErreur = new StringWriter();
 
@@ -86,19 +74,16 @@ public class KitJava {
         try {
             sortieErreur.close() ;
         } catch (IOException ex) {
-            Logger.getLogger(TestOutils.class.getName()).log(Level.SEVERE, null, ex);
+        	Logger.getLogger(TestOutils.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        System.out.println("compilation du code : ");
-        System.out.println(laClasse);
-        System.out.println("-------------------------------------");
-        System.out.println("sortie d'erreur de la compilation : ") ;
-        System.out.println(sortieErreur);
-        System.out.println("-------------------------------------");
+        String err = sortieErreur.toString();
+        if(!err.equals("")){
+        	throw new CompilationException(err);
+        }
     }
 
     
-    public void executer() {
+    public void executer() throws CompilationException, ParsingException, ExecutionException {
         try {
             String nomExecutable = nomPackage + "." + nomClasse ;
             System.out.println("nomexécutable : " + nomExecutable);
@@ -115,6 +100,10 @@ public class KitJava {
             Logger.getLogger(TestOutils.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(TestOutils.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (CompilationException ex){
+        	System.out.println(ex.getErreur());
+        } catch (Exception ex){
+        	throw new ExecutionException("Erreur pendant l'execution du code");
         }
     }
 	

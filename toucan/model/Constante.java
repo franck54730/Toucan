@@ -42,6 +42,7 @@ public class Constante {
 	public static final int ETAT_DEPART = 0;
 	public static final int ETAT_RUN = 1;
 	public static final int ETAT_PAUSE = 2;
+	public static final int ETAT_ERROR = 3;
 	
 	public static final int  NB_CASES = 4;
 }

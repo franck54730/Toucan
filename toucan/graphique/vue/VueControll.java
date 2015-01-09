@@ -9,6 +9,7 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
@@ -21,7 +22,7 @@ public class VueControll extends JPanel implements Observer  {
 
 	protected Modele model;
 	protected JButton boutonGoStop;
-	protected JLabel labelVitesse;
+	protected JLabel labelErreur;
 	protected JSlider slider;
 	
 	public VueControll(Modele m){
@@ -49,5 +50,8 @@ public class VueControll extends JPanel implements Observer  {
 	public void update(Observable arg0, Object arg1) {
 		boutonGoStop.setText(model.getRunBoutonText());
 		boutonGoStop.setEnabled(true);
+		if(model.isErreur()){
+			JOptionPane.showMessageDialog(this, model.getExceptionErreur());
+		}
 	}
 }

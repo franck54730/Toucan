@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Random;
 
+import com.sun.org.apache.bcel.internal.classfile.ExceptionTable;
+
+import toucan.exception.CompilationException;
+import toucan.exception.ExceptionToucan;
+import toucan.exception.ExecutionException;
+import toucan.exception.ParsingException;
 import toucan.model.algo.AlgoBulle;
 import toucan.model.algo.AlgoFacade;
 import toucan.model.algo.AlgoInsertion;
@@ -27,6 +33,7 @@ public class Modele extends Observable implements Runnable {
 	protected int run;
 	protected String code;
 	protected AbstractAlgo algo;
+	protected ExceptionToucan exception;
 	
 	public void setAlgo(int i){
 		//run = Constante.ETAT_DEPART;
@@ -44,6 +51,7 @@ public class Modele extends Observable implements Runnable {
 	}
 	
 	public Modele(int n){
+		exception = new ExceptionToucan("");
 		algo = new AlgoBulle(this);
 		run = Constante.ETAT_DEPART;
 		temps = 0;
@@ -79,11 +87,18 @@ public class Modele extends Observable implements Runnable {
 		return run == Constante.ETAT_DEPART;
 	}
 	
+	public boolean isErreur(){
+		boolean rep = (run == Constante.ETAT_ERROR);
+		if(rep)
+			run = Constante.ETAT_DEPART;
+		return rep;
+	}
 	
 	public void goStop(){
 		if(run == Constante.ETAT_DEPART){
 			Thread t = new Thread((Runnable) this, "Toucan");
 			t.start();
+			run = Constante.ETAT_RUN;
 		}else if(run == Constante.ETAT_PAUSE){
 			run = Constante.ETAT_RUN;
 		}else{
@@ -122,12 +137,30 @@ public class Modele extends Observable implements Runnable {
 		notifyObservers();
 	}
 	
+	public String getExceptionErreur(){
+		return exception.getErreur();
+	}
+	
 	/**
 	 * methode qui execute l'algorithme de trie à bulle
 	 */
 	public void run(){
 		run = Constante.ETAT_RUN;
-		algo.trier();
+		try {
+			algo.trier();
+		} catch (ParsingException e) {
+			run = Constante.ETAT_ERROR;
+			exception = e;
+			mettreAJour();
+		} catch (CompilationException e) {
+			run = Constante.ETAT_ERROR;
+			mettreAJour();
+			exception = e;
+		} catch (ExecutionException e) {
+			run = Constante.ETAT_ERROR;
+			exception = e;
+			mettreAJour();
+		} 
 	}
 	
 	/**

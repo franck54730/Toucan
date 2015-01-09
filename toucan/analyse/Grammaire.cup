@@ -41,7 +41,7 @@ parser code {:
    
         /* Print the contents of the StringBuffer 'm', which contains an error message, out on 
            a line. */
-        System.err.println(m);
+        //System.err.println(m);
     }
     /* Change the method report_fatal_error so when it reports a fatal error it will display the 
        line and column number of where the fatal error occurred in the input as well as the reason

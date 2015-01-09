@@ -1,5 +1,8 @@
 package toucan.model.algo;
 
+import toucan.exception.CompilationException;
+import toucan.exception.ExecutionException;
+import toucan.exception.ParsingException;
 import toucan.model.Modele;
 import toucan.model.animation.AffectationBoolean;
 import toucan.model.animation.AffectationCase;
@@ -67,6 +70,9 @@ public abstract class AbstractAlgo implements IAlgo{
 	
 	/**
 	 * fonction qui execute l'algo
+	 * @throws ParsingException 
+	 * @throws CompilationException 
+	 * @throws ExecutionException 
 	 */
-	public abstract void trier();
+	public abstract void trier() throws ParsingException, CompilationException, ExecutionException;
 }

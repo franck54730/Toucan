@@ -2,8 +2,13 @@ package toucan.model.algo;
 
 import java.io.ByteArrayInputStream;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+
 import toucan.analyse.AnalyseurLexical;
 import toucan.analyse.AnalyseurSyntaxique;
+import toucan.exception.CompilationException;
+import toucan.exception.ExecutionException;
+import toucan.exception.ParsingException;
 import toucan.model.Modele;
 import toucan.model.animation.AffectationBoolean;
 import toucan.model.animation.AffectationCase;
@@ -32,24 +37,8 @@ public class AlgoFacade extends AbstractAlgo {
 		super(m);
 	}
 	
-	/*
-	public void setModel(Modele m){
-		model = m;
-		affCC = new AffectationCaseCase(model);
-		affCV = new AffectationCaseVariable(model);
-		affVC = new AffectationVariableCase(model);
-		compCC = new ComparaisonCaseCase(model);
-		compVC = new ComparaisonVariableCase(model);
-		affVV = new AffectationVariableVariable(model);
-		compVV = new ComparaisonVariableVariable(model);
-		affC = new AffectationCase(model);
-		affV = new AffectationVariable(model);
-		inc = new Increment(model);
-		affB = new AffectationBoolean(model);
-	}
-*/
 	@Override
-	public void trier() {
+	public void trier() throws ParsingException, CompilationException, ExecutionException {
 		// TODO Stub de la méthode généré automatiquement
 		String code = model.getCode();
 		AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(
@@ -61,10 +50,20 @@ public class AlgoFacade extends AbstractAlgo {
 		}catch(Exception e){
 			
 		}
-
-		KitJava k = new KitJava(arbre.getCodeDecorer(), model);
-		k.compiler();
-		k.executer();
-		System.out.println(k);
+		KitJava k = null;
+		try{
+			k = new KitJava(arbre.getCodeDecorer(), model);
+		}catch(Exception e){
+			throw new ParsingException("Erreur de lecture du code.");
+		}
+		if(k != null){
+			k.compiler();
+			try{
+				k.executer();
+			}catch(ExecutionException e){
+				throw e;
+			}
+			System.out.println(k);
+		}
 	}
 }
