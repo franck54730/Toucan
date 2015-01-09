@@ -57,13 +57,13 @@ public class AlgoFacade extends AbstractAlgo {
 			throw new ParsingException("Erreur de lecture du code.");
 		}
 		if(k != null){
+			System.out.println(k);
 			k.compiler();
 			try{
 				k.executer();
 			}catch(ExecutionException e){
 				throw e;
 			}
-			System.out.println(k);
 		}
 	}
 }

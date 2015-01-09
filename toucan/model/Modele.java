@@ -300,7 +300,8 @@ public class Modele extends Observable implements Runnable {
 	 * incremente le temps de 1
 	 */
 	public void incTemps() {
-		temps++;
+		if(run==Constante.ETAT_RUN)
+			temps++;
 	}
 	
 	public String getRunBoutonText(){

@@ -80,19 +80,17 @@ public class KitJava {
         if(!err.equals("")){
         	throw new CompilationException(err);
         }
+        
     }
 
     
     public void executer() throws CompilationException, ParsingException, ExecutionException {
         try {
             String nomExecutable = nomPackage + "." + nomClasse ;
-            System.out.println("nomexécutable : " + nomExecutable);
             
             Object instance = fileManager.getClassLoader(javax.tools.StandardLocation.CLASS_PATH).loadClass("toucan.model.algo.AlgoPerso").newInstance();
             ((IAlgo)instance).setModel(model);
             ((IAlgo)instance).trier() ;
-            
-            System.out.println("-------------------------------------");
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(TestOutils.class.getName()).log(Level.SEVERE, null, ex);

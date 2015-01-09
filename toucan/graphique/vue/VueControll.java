@@ -28,8 +28,7 @@ public class VueControll extends JPanel implements Observer  {
 	public VueControll(Modele m){
 		model = m;
 		m.addObserver(this);
-		boutonGoStop = new JButton("Stop");
-		boutonGoStop.setEnabled(false);
+		boutonGoStop = new JButton("Commencer");
 		boutonGoStop.addActionListener(new EcouteurGoStop(model));
 		boutonGoStop.setPreferredSize(new Dimension(120, 25));
 		this.add(boutonGoStop);
