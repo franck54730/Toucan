@@ -28,6 +28,10 @@ public class Variable extends ICase {
     	return true;
     }
     
+    /**
+     * retourne le label de la case
+     * @return
+     */
     public String getLabel(){
     	return label;
     }

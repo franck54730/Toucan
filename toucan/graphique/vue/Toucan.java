@@ -18,10 +18,10 @@ import toucan.model.Modele;
 
 public class Toucan extends JFrame {
     
-    public Toucan() {
+    public Toucan(int n) {
         super("Projet Toucan - animation des algorithmes de tris");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Modele model = new Modele(Constante.NB_CASES);
+        Modele model = new Modele(n);
         // instanciation de la vue de l'animation
         VueText vueText = new VueText(model);
         add(vueText, BorderLayout.SOUTH);
@@ -38,6 +38,10 @@ public class Toucan extends JFrame {
     }
 
     public static void main(String[] args) {
-        new Toucan() ;
+    	int n = -1;
+    	try{
+    		n = Integer.parseInt(args[0]);
+    	}catch(Exception e){}
+        new Toucan(n) ;
     }
 }

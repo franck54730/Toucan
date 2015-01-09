@@ -22,38 +22,74 @@ public abstract class Mouvement {
 		couleur = col;
 	}
 
+	/**
+	 * accesseur lecture coordonnée de depart
+	 * @return
+	 */
 	public Coordonnee getDepart() {
 		return depart;
 	}
 
+	/**
+	 * accesseur ecriture coordonnée de depart
+	 * @return
+	 */
 	public void setDepart(Coordonnee depart) {
 		this.depart = depart;
 	}
 
+	/**
+	 * accesseur lecture durée
+	 * @return
+	 */
 	public int getDuree() {
 		return duree;
 	}
 
+	/**
+	 * accesseur ecriture durée
+	 * @return
+	 */
 	public void setDuree(int duree) {
 		this.duree = duree;
 	}
 
+	/**
+	 * accesseur lecture temps
+	 * @return
+	 */
 	public int getTemps() {
 		return temps;
 	}
 
+	/**
+	 * accesseur ecriture temps
+	 * @return
+	 */
 	public void setTemps(int temps) {
 		this.temps = temps;
 	}
-	
+
+	/**
+	 * accesseur lecture valeur
+	 * @return
+	 */
 	public String getValeur(){
 		return valeur;
 	}
-	
+
+	/**
+	 * accesseur lecture couleur
+	 * @return
+	 */
 	public Color getCouleur(){
 		return couleur;
 	}
 	
+	/**
+	 * accesseur ecriture couleur
+	 * @return
+	 */
 	public void setCouleur(Color c){
 		couleur = c;
 	}

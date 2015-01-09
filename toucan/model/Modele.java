@@ -31,10 +31,56 @@ public class Modele extends Observable implements Runnable {
 	protected int vitesse;
 	protected int temps;
 	protected int run;
+	protected int nbCase;
 	protected String code;
 	protected AbstractAlgo algo;
 	protected ExceptionToucan exception;
 	
+	public Modele(int n){
+		exception = new ExceptionToucan("");
+		algo = new AlgoBulle(this);
+		run = Constante.ETAT_DEPART;
+		temps = 0;
+		vitesse = 2;
+		code = "";
+		cases = new LesCases();
+		saveTab = new ArrayList<Integer>();
+		if(n == -1)
+			nbCase = Constante.NB_CASES;
+		else
+			nbCase = n;
+		genererTableau(nbCase);
+		initialiserTableau();	
+	}
+	
+	/**
+	 * retourne vrai si l'algo bulle est selectionné
+	 * @return
+	 */
+	public boolean isBulle(){
+		return algo instanceof AlgoBulle;
+	}
+	
+	/**
+	 * retourne vrai si l'algo insertion est selectionné
+	 * @return
+	 */
+	public boolean isInsertion(){
+		return algo instanceof AlgoInsertion;
+	}
+	
+	/**
+	 * retourne vrai si l'algo personnel est selectionné
+	 * @return
+	 */
+	public boolean isPerso(){
+		return algo instanceof AlgoFacade;
+	}
+	
+	/**
+	 * methode de selection de l'algorithme
+	 * @param i indice de l'algo (defini dans Constante)
+	 */
 	public void setAlgo(int i){
 		//run = Constante.ETAT_DEPART;
 		switch(i){
@@ -48,25 +94,22 @@ public class Modele extends Observable implements Runnable {
 				algo = new AlgoFacade(this);
 				break;
 		}
+		setChanged();
+		notifyObservers();
 	}
 	
-	public Modele(int n){
-		exception = new ExceptionToucan("");
-		algo = new AlgoBulle(this);
-		run = Constante.ETAT_DEPART;
-		temps = 0;
-		vitesse = 2;
-		code = "";
-		cases = new LesCases();
-		saveTab = new ArrayList<Integer>();
-		genererTableau(n);
-		initialiserTableau();	
-	}
-	
+	/**
+	 * Accesseur en ecriture sur le code de l'utilisateur
+	 * @param s
+	 */
 	public void setCode(String s){
 		code = s;
 	}
-	
+
+	/**
+	 * Accesseur en lecture sur le code de l'utilisateur
+	 * @param s
+	 */
 	public String getCode(){
 		return code;
 	}
@@ -87,6 +130,10 @@ public class Modele extends Observable implements Runnable {
 		return run == Constante.ETAT_DEPART;
 	}
 	
+	/**
+	 * retourne vrai si l'application est a l'etat d'erreur (repasse ensuite a l'etat DEPART)
+	 * @return
+	 */
 	public boolean isErreur(){
 		boolean rep = (run == Constante.ETAT_ERROR);
 		if(rep)
@@ -94,6 +141,9 @@ public class Modele extends Observable implements Runnable {
 		return rep;
 	}
 	
+	/**
+	 * methode de gestion de l'etat (clic sur le bouton de pause)
+	 */
 	public void goStop(){
 		if(run == Constante.ETAT_DEPART){
 			Thread t = new Thread((Runnable) this, "Toucan");
@@ -129,6 +179,7 @@ public class Modele extends Observable implements Runnable {
 		for(ICase c : cases){
 			if(!c.isVariable()){
 				int val = r.nextInt(101);
+				val = val *(r.nextInt(2)==0?-1:1);
 				c.setValeur(val+"");
 				saveTab.add(val);
 			}
@@ -137,6 +188,10 @@ public class Modele extends Observable implements Runnable {
 		notifyObservers();
 	}
 	
+	/**
+	 * retourne le text de la dernier ExceptionToucan levée ("" si aucune levée)
+	 * @return
+	 */
 	public String getExceptionErreur(){
 		return exception.getErreur();
 	}
@@ -147,7 +202,15 @@ public class Modele extends Observable implements Runnable {
 	public void run(){
 		run = Constante.ETAT_RUN;
 		try {
-			algo.trier();
+			if(isPerso()){
+				if(!code.equals("")){
+					algo.trier();
+				}else{
+					arret();
+				}
+			}else{
+				algo.trier();
+			}
 		} catch (ParsingException e) {
 			run = Constante.ETAT_ERROR;
 			exception = e;
@@ -187,8 +250,20 @@ public class Modele extends Observable implements Runnable {
 		return cases.estFini(temps);
 	}
 	
+	/**
+	 * retourne le nombre de cases du model
+	 * @return
+	 */
 	public int getNbCases(){
 		return cases.nbCase();
+	}
+
+	/**
+	 * retourne le nombre de variables du model
+	 * @return
+	 */
+	public int getNbVariables(){
+		return cases.nbVariable();
 	}
 	
 	/**
@@ -265,6 +340,10 @@ public class Modele extends Observable implements Runnable {
 		}
 	}
 	
+	/**
+	 * retourne le temps lors de la fin du dernier mouvement
+	 * @return
+	 */
 	public int tempsMax(){
 		int rep = 0;
 		for(ICase c : cases){
@@ -304,6 +383,10 @@ public class Modele extends Observable implements Runnable {
 			temps++;
 	}
 	
+	/**
+	 * retourne le text a afficher sur le bouton Pause/reprendre en fonction de l'etat
+	 * @return
+	 */
 	public String getRunBoutonText(){
 		String rep = "";
 		if(run == Constante.ETAT_RUN){
@@ -316,21 +399,45 @@ public class Modele extends Observable implements Runnable {
 		return rep;
 	}
 	
+	/**
+	 * retourne le ToolTipText du bouton Pause/reprendre en fonction de l'etat
+	 * @return
+	 */
+	public String getRunBoutonToolTipText(){
+		String rep = "";
+		if(run == Constante.ETAT_RUN){
+			rep = Constante.TEXT_TIP_BOUTON_PAUSE;
+		}else if(run == Constante.ETAT_DEPART){
+			rep = Constante.TEXT_TIP_BOUTON_COMMENCER;
+		}else{
+			rep = Constante.TEXT_TIP_BOUTON_CONTINUER;
+		}
+		return rep;
+	}
+	
+	/**
+	 * reinitialise le model
+	 */
 	public void reinit(){
-		algo = new AlgoBulle(this);
 		run = Constante.ETAT_DEPART;
 		temps = 0;
 		code = "";
-		genererTableau(Constante.NB_CASES);
+		genererTableau(nbCase);
 		initialiserTableau();
 		setChanged();
 		notifyObservers();
 	}
 	
+	/**
+	 * retirer tout les variables du model
+	 */
 	public void viderVariable(){
 		cases.viderVariable();
 	}
 	
+	/**
+	 * arret de l'algorithme retour a l'etat depart (reinitialisation du temps)
+	 */
 	public void arret(){
 		LesCases nLC = new LesCases(cases, saveTab);
 		cases = nLC;

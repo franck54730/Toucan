@@ -31,7 +31,7 @@ public class VueAnimation extends JPanel {
     
 	public VueAnimation(Modele m) {
         super() ;
-        this.setPreferredSize(new Dimension(1000, 700)) ;
+        this.setPreferredSize(new Dimension(800, 400)) ;
         model = m;
         reconstruireCasesGraphiquesEtLabel();
         mouvementFini = true;

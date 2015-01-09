@@ -16,7 +16,6 @@ public class ComparaisonVariableCase extends IComparaison {
 		//TODO gestion droite gauche
 		int decalage = 100;
 		int tempsCompare = 0;
-		System.out.println(num1);
 		ICase laCase = model.getCase(num1);
 		ICase laVar = model.getVariable(num2);
 		laCase.descendre(decalage, Constante.COULEUR_COMP);
@@ -55,7 +54,6 @@ public class ComparaisonVariableCase extends IComparaison {
 		laCase.monter(decalage, Constante.COULEUR_COMP);
 		laVar.descendre(decalage, Constante.COULEUR_COMP);
 		int tempsTot = 2*decalage+2*parcours+tempsCompare;
-		System.out.println("tps : " + tempsTot + "  tps comp : "+ tempsCompare);
 		//ajout d'un mouvement rester au autre case
 		for(int i = 0; i < model.getLesCases().nbCase();i++){
 			if(i != num1){

@@ -27,24 +27,28 @@ public class VueGraphique extends JPanel implements Observer{
 	}
 	
 	public void update(Observable o, Object arg) {
-		vueAnim.reconstruireCasesGraphiquesEtLabel();
-		Runnable code = new Runnable() {
-			public void run() {
-        		vueAnim.setTempo(model.getVitesse());
-        		vueAnim.repaint();
-			}
-		} ;
-		if (SwingUtilities.isEventDispatchThread())
-        	code.run() ;
-		else
-			try {
-				SwingUtilities.invokeAndWait(code) ;
-			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		try {
+			vueAnim.reconstruireCasesGraphiquesEtLabel();
+			Runnable code = new Runnable() {
+				public void run() {
+	        		vueAnim.setTempo(model.getVitesse());
+	        		vueAnim.repaint();
+				}
+			} ;
+			if (SwingUtilities.isEventDispatchThread())
+	        	code.run() ;
+			else
+				try {
+					SwingUtilities.invokeAndWait(code) ;
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}catch(Exception e){
+			
+		}
 	}
 }

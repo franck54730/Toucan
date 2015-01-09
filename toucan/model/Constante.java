@@ -25,10 +25,15 @@ public class Constante {
 	public static final String TEXT_TIP_MENUFICHIER = "Menu fichier permettant de :";
 	public static final String TEXT_TIP_MENUALGO = "Menu algo permettant de choisir l'algorithme à executer";
 	public static final String TEXT_TIP_ITEMBULLE = "Choisir algorithme de tri à bulle";
-	public static final String TEXT_TIP_ITEMPERSO = "Choisir algorithme de tri personnaliser";
+	public static final String TEXT_TIP_ITEMPERSO = "Choisir algorithme de tri personnalisé";
 	public static final String TEXT_TIP_ITEMDEMARRER = "Demarrer l'algorithme de tri";
 	public static final String TEXT_TIP_ITEMREINIT = "Générer un nouveau tableau";
 	public static final String TEXT_TIP_ITEMINSERTION = "Choisir algorithme de tri par insertion";
+	public static final String TEXT_TIP_ITEMDFERMER = "Quitter l'application";
+	public static final String TEXT_TIP_ITEMARRETER = "Arrêt de l'algorithme en cour";
+	public static final String TEXT_TIP_BOUTON_PAUSE = "Mettre l'animation en pause";
+	public static final String TEXT_TIP_BOUTON_COMMENCER = "Demarrer l'animation";
+	public static final String TEXT_TIP_BOUTON_CONTINUER = "Reprendre l'animation";
 	
 	
 	public static final int ID_ALGO_BULLE = 1;

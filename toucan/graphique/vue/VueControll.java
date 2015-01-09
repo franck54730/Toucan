@@ -28,7 +28,9 @@ public class VueControll extends JPanel implements Observer  {
 	public VueControll(Modele m){
 		model = m;
 		m.addObserver(this);
-		boutonGoStop = new JButton("Commencer");
+		boutonGoStop = new JButton("");;
+		boutonGoStop.setText(model.getRunBoutonText());
+		boutonGoStop.setToolTipText(model.getRunBoutonToolTipText());
 		boutonGoStop.addActionListener(new EcouteurGoStop(model));
 		boutonGoStop.setPreferredSize(new Dimension(120, 25));
 		this.add(boutonGoStop);
@@ -48,9 +50,10 @@ public class VueControll extends JPanel implements Observer  {
 	
 	public void update(Observable arg0, Object arg1) {
 		boutonGoStop.setText(model.getRunBoutonText());
-		boutonGoStop.setEnabled(true);
+		boutonGoStop.setToolTipText(model.getRunBoutonToolTipText());
 		if(model.isErreur()){
 			JOptionPane.showMessageDialog(this, model.getExceptionErreur());
+			model.arret();
 		}
 	}
 }

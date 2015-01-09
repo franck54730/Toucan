@@ -38,43 +38,48 @@ public class AlgoInsertion extends AbstractAlgo {
 	}*/
 	
 	@Override
-	public void trier() {/*
-		System.out.println("tri insert : ");
+	public void trier() {
+		/*
+  procédure tri_insertion(tableau T, entier n)
+      pour i de 1 à n-1
+          x ← T[i]
+          j ← i
+          tant que j > 0 et T[j - 1] > x
+              T[j] ← T[j - 1]
+              j ← j - 1
+          fin tant que
+          T[j] ← x
+     fin pour
+  fin procédure
+		 */
 		int[] tab = model.getTab();
-		int n = model.getLesCases().nbCase() ;
-		System.out.println(Arrays.toString(tab));
-		int i, j;
-		for (i = 1; i < n; ++i) {
-			int elem = tab[i];
-			affCV.executer(i, 0);
-			j=i;
-			compVC.executer(j-1, 0);
-			while (j > 0 && tab[j-1] > elem){
-				tab[j] = tab[j-1];
-				affCC.executer(j-1, j);
-				j--;
-				compVC.executer(j-1, 0);
-			}
-			tab[j] = elem;
-			affVC.executer(j, 0);
-		}
-		System.out.println(Arrays.toString(tab));*/
-		
+		int nbCases = model.getLesCases().nbCase() ;
 		model.viderVariable();
-		model.creeVariable("", "encore");
 		model.creeVariable("", "n");
 		model.creeVariable("", "i");
+		model.creeVariable("", "j");
 		model.creeVariable("", "tmp");
 		model.mettreAJour();
-		affCV.executer(0, "i");
-		/*
-		model.viderVariable();
-		int[] tab = model.getTab();
-		int nbCases = model.getNbCases();
-		model.creeVariable("", "i");int i ;affCV.executer(0, "i");
-		i = tab[0]
-		 ;
-		 */
+		affV.executer(model.getVariableIndice("n"), nbCases);
+		affV.executer(model.getVariableIndice("i"), 1);
+		compVV.executer(model.getVariableIndice("i"), model.getVariableIndice("n"));
+		for(int i = 1; i < nbCases; i++){
+			int x = tab[i];
+			affCV.executer(i, model.getVariableIndice("tmp"));
+			int j = i;
+			affVV.executer(model.getVariableIndice("i"), model.getVariableIndice("j"));
+			compVC.executer(j-1, model.getVariableIndice("tmp"));
+			while(j > 0 && tab[j-1] > x){
+				tab[j] = tab[j-1];
+				affCC.executer(j-1, j);
+				j = j-1;
+				affV.executer(model.getVariableIndice("j"), j-1);
+				compVC.executer(j, model.getVariableIndice("tmp"));
+			}
+			tab[j] = x;
+			affVC.executer(j, model.getVariableIndice("tmp"));
+			inc.executer(model.getVariableIndice("i"));
+		}
 	}
 
 }

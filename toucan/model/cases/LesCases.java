@@ -12,6 +12,11 @@ public class LesCases implements Iterable<ICase>{
 		cases = new ArrayList<ICase>();
 	}
 	
+	/**
+	 * retourne une case pour une valeur donné
+	 * @param val
+	 * @return
+	 */
 	public Case getCaseForValeur(String val){
 		Case rep = null;
 		int i = 0;
@@ -27,6 +32,11 @@ public class LesCases implements Iterable<ICase>{
 		return rep;
 	}
 
+	/**
+	 * constructeur de copie
+	 * @param lc
+	 * @param tab
+	 */
 	public LesCases(LesCases lc, ArrayList<Integer> tab){
 		cases = new ArrayList<ICase>();
 		int nbVar = 0;
@@ -48,10 +58,17 @@ public class LesCases implements Iterable<ICase>{
 		return cases.iterator();
 	}
 	
+	/**
+	 * ajout d'une case
+	 * @param c
+	 */
 	public void addCase(ICase c){
 		cases.add(c);
 	}
 	
+	/**
+	 * vide toute les cases et variables
+	 */
 	public void vider(){
 		cases.clear();
 	}
